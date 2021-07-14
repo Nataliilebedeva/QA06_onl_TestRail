@@ -19,7 +19,7 @@ public class AddEditDeleteProjectTests extends BaseTest {
         LoginStep loginStep = new LoginStep(driver);
         loginStep.login(login, psw);
         AddProjectStep addProjectStep = new AddProjectStep(driver);
-        addProjectStep.addProject("Some_Project");
+        addProjectStep.addProject(properties.getProjectName());
         Assert.assertEquals(new ProjectsPage(driver, false).getSuccessfullyAddedText(), "Successfully added the new project.");
     }
 
@@ -29,7 +29,7 @@ public class AddEditDeleteProjectTests extends BaseTest {
         LoginStep loginStep = new LoginStep(driver);
         loginStep.login(login, psw);
         EditProjectStep editProjectStep = new EditProjectStep(driver);
-        editProjectStep.editProject("Some_Project", "Some_Project_Leb");
+        editProjectStep.editProject(properties.getProjectName(), properties.getReProjectName());
         Assert.assertEquals(new ProjectsPage(driver, false).getSuccessfullyAddedText(), "Successfully updated the project.");
     }
 
@@ -39,7 +39,7 @@ public class AddEditDeleteProjectTests extends BaseTest {
         LoginStep loginStep = new LoginStep(driver);
         loginStep.login(login, psw);
         DeleteProjectStep deleteProjectStep = new DeleteProjectStep(driver);
-        deleteProjectStep.deleteProject("Some_Project_Leb");
+        deleteProjectStep.deleteProject(properties.getReProjectName());
         Assert.assertEquals(new ProjectsPage(driver, false).getSuccessfullyAddedText(), "Successfully deleted the project.");
     }
 }

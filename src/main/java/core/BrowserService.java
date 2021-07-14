@@ -9,9 +9,12 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
+import java.util.concurrent.TimeUnit;
+
 public class BrowserService {
     private ReadProperties properties = new ReadProperties();
     private WebDriver driver;
+    private Waits wait;
 
     public BrowserService() {
         switch (properties.getBrowser().toLowerCase()) {
@@ -37,9 +40,16 @@ public class BrowserService {
             default:
                 throw new AssertionError("Данный браузер не поддерживается.");
         }
-    }
+                driver.manage().timeouts().implicitlyWait(0, TimeUnit.MILLISECONDS);
+                wait = new Waits(driver, properties.getTimeOut());
+        }
+
 
     public WebDriver getDriver() {
         return driver;
+    }
+
+    public Waits getWait(){
+        return  wait;
     }
 }

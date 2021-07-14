@@ -15,7 +15,7 @@ public class LoginPage extends BasePage {
     private final static By no_login_Label_By = By.xpath("//*[text() = 'Email/Login is required.']");
 
 
-    public WebElement getUsernameInput() { return driver.findElement(username_Input_By);}
+    public WebElement getUsernameInput() { return waits.waitForVisibility(username_Input_By);}
     public WebElement getPasswordInput() { return driver.findElement(password_Input_By);}
     public WebElement getLoginButton() { return driver.findElement(login_Button_By);}
     public WebElement getErrorLabel() { return driver.findElement(error_Label_By);}

@@ -27,4 +27,18 @@ public class ReadProperties {
     public boolean getHeadless() {
         return Boolean.parseBoolean(properties.getProperty("headless"));
     }
+
+    public int getTimeOut() {
+        return Integer.parseInt(properties.getProperty("timeout"));
+    }
+
+
+    public String getProjectName() {
+        return properties.getProperty("nameProject");
+    }
+
+    public String getReProjectName() {
+        return properties.getProperty("renameProject");
+    }
 }
+

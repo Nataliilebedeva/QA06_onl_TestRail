@@ -1,7 +1,9 @@
 package tests;
 
 import baseEntities.BaseTest;
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -49,15 +51,16 @@ public class AddEditDeleteTestCaseTests extends BaseTest {
     }
 
     @Parameters({"login-value", "psw-value"})
-    @Test(dependsOnMethods = "positiveAddFirstTestCase", expectedExceptions = NoSuchElementException.class)
+    @Test(dependsOnMethods = "positiveAddFirstTestCase", expectedExceptions = TimeoutException.class)
     public void positiveDeleteTestCase(String login, String psw) {
         LoginStep loginStep = new LoginStep(driver);
         loginStep.login(login, psw);
 
         DeleteTestCaseStep deleteTestCaseStep = new DeleteTestCaseStep(driver);
         deleteTestCaseStep.deleteTestCase("Some_Project_Leb");
-
-        Assert.assertFalse(new TestCasesPage(driver, false).getDeleteCaseLabel().isDisplayed());
+        waits.waitForPresent(By.xpath("//span[text() ='BlaBlaBla']"));
+        //waits.waitForVisibilityElement(new TestCasesPage(driver,false).getDeleteCaseLabel());
+        //Assert.assertFalse(new TestCasesPage(driver, false).getDeleteCaseLabel().isDisplayed());
 
     }
 }
