@@ -38,6 +38,10 @@ public class Waits {
         return wait.until(ExpectedConditions.invisibilityOfElementLocated(by));
     }
 
+    public Boolean waitForInvisibilityElement(WebElement element) {
+        return wait.until(ExpectedConditions.invisibilityOf(element));
+    }
+
     public Boolean waitForAttribute(By by, String attributeName, String attributeValue) {
         return wait.until(ExpectedConditions.attributeToBe(by, attributeName, attributeValue));
     }
@@ -45,5 +49,15 @@ public class Waits {
     public Boolean waitForWindows(int windowsCount) {
         return wait.until(ExpectedConditions.numberOfWindowsToBe(windowsCount));
     }
+
+
+    public WebElement waitForClickElement(WebElement element){
+        return wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    public Boolean waitForNotClickElement(WebElement element){
+        return wait.until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(element)));
+    }
+
 }
 
