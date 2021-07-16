@@ -1,15 +1,20 @@
 package tests;
 
+
 import baseEntities.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.io.File;
 
 public class AdvancedElementsTestHomeWork extends BaseTest {
 
+    //Реализовать Правый клик по элементу
     @Test
-    public void contextTest() {
+    public void contextTest() throws InterruptedException {
         driver.get("http://the-internet.herokuapp.com/context_menu");
         WebElement hotSpot = driver.findElement(By.id("hot-spot"));
         Actions actions = new Actions(driver);
@@ -17,6 +22,8 @@ public class AdvancedElementsTestHomeWork extends BaseTest {
                 .moveToElement(hotSpot)
                 .contextClick()
                 .build().perform();
+
+        Thread.sleep(2000);
     }
 
     //Найти чекбокс
@@ -30,7 +37,7 @@ public class AdvancedElementsTestHomeWork extends BaseTest {
     //Проверить, что инпут enabled
 
     @Test
-    public void dynamicControl(){
+    public void dynamicControl() {
         driver.get("http://the-internet.herokuapp.com/dynamic_controls");
 
         //Найти чекбокс
@@ -65,8 +72,51 @@ public class AdvancedElementsTestHomeWork extends BaseTest {
 
     }
 
+    @Test
+    public void uploadFileTest() {
+        String nameImage = "thumb.jpg";
+        driver.get("http://the-internet.herokuapp.com/upload");
 
+        WebElement uploadFile = driver.findElement(By.xpath("//input[@type = 'file' and @name = 'file']"));
 
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(classLoader.getResource(nameImage).getFile());
+        String absolutePath = file.getAbsolutePath();
 
+        uploadFile.sendKeys(absolutePath);
 
+        driver.findElement(By.id("file-submit")).submit();
+
+        waits.waitForVisibility(By.xpath("//h3[text() = 'File Uploaded!']"));
+
+        WebElement textMessage = driver.findElement(By.id("uploaded-files"));
+        Assert.assertEquals(nameImage, textMessage.getText());
+
+    }
+
+    @Test
+    public void downloadFileTest() throws InterruptedException {
+        driver.get("http://the-internet.herokuapp.com/download");
+        WebElement downloadFile = driver.findElement(By.xpath("//a[. = 'upload.png']"));
+        downloadFile.click();
+        Thread.sleep(3000);
+
+        File folder = new File(System.getProperty("user.dir"));
+        File[] listOfFiles = folder.listFiles();
+        boolean found = false;
+        File f = null;
+        for (File listOfFile : listOfFiles) {
+            if (listOfFile.isFile()) {
+                String fileName = listOfFile.getName();
+                System.out.println("File " + listOfFile.getName());
+                if (fileName.matches("upload.png")) {
+                    f = new File(fileName);
+                    found = true;
+                }
+            }
+        }
+        Assert.assertTrue(found, "Downloaded document is not found");
+        f.deleteOnExit();
+    }
 }
+
