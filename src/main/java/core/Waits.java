@@ -25,6 +25,10 @@ public class Waits {
         return wait.until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
+    public List<WebElement> waitForPresentElements(By by) {
+        return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(by));
+    }
+
 
     public WebElement waitForVisibilityElement(WebElement element) {
         return wait.until(ExpectedConditions.visibilityOf(element));
