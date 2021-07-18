@@ -9,6 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.File;
+import java.util.concurrent.TimeUnit;
 
 public class AdvancedElementsTestHomeWork extends BaseTest {
 
@@ -97,9 +98,9 @@ public class AdvancedElementsTestHomeWork extends BaseTest {
     @Test
     public void downloadFileTest() throws InterruptedException {
         driver.get("http://the-internet.herokuapp.com/download");
-        WebElement downloadFile = driver.findElement(By.xpath("//a[. = 'upload.png']"));
+        WebElement downloadFile = driver.findElement(By.xpath("//div[@class = 'example']//a[1]"));
         downloadFile.click();
-        Thread.sleep(3000);
+        Thread.sleep(3000); //какая-то ожидала для скачивания файла??
 
         File folder = new File(System.getProperty("user.dir"));
         File[] listOfFiles = folder.listFiles();
@@ -109,7 +110,7 @@ public class AdvancedElementsTestHomeWork extends BaseTest {
             if (listOfFile.isFile()) {
                 String fileName = listOfFile.getName();
                 System.out.println("File " + listOfFile.getName());
-                if (fileName.matches("upload.png")) {
+                if (fileName.matches(downloadFile.getText())) {
                     f = new File(fileName);
                     found = true;
                 }
