@@ -1,5 +1,6 @@
 package core;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -63,5 +64,12 @@ public class Waits {
         return wait.until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(element)));
     }
 
+    public Alert waitForAlert(){
+        return wait.until(ExpectedConditions.alertIsPresent());
+    }
+
+    public Boolean waitForNoAlert(){
+        return wait.until(ExpectedConditions.not(ExpectedConditions.alertIsPresent()));
+    }
 }
 
