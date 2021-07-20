@@ -1,5 +1,6 @@
 package core;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,6 +24,10 @@ public class Waits {
     //только наличие в дом-модели вообще
     public WebElement waitForPresent(By by) {
         return wait.until(ExpectedConditions.presenceOfElementLocated(by));
+    }
+
+    public List<WebElement> waitForPresentElements(By by) {
+        return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(by));
     }
 
 
@@ -59,5 +64,12 @@ public class Waits {
         return wait.until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(element)));
     }
 
+    public Alert waitForAlert(){
+        return wait.until(ExpectedConditions.alertIsPresent());
+    }
+
+    public Boolean waitForNoAlert(){
+        return wait.until(ExpectedConditions.not(ExpectedConditions.alertIsPresent()));
+    }
 }
 
