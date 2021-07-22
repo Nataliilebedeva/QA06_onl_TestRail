@@ -1,4 +1,4 @@
-package tests;
+package tests.ClassWork;
 
 import baseEntities.BaseTest;
 import org.openqa.selenium.Alert;

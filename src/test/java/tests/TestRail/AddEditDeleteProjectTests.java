@@ -1,4 +1,4 @@
-package tests;
+package tests.TestRail;
 
 import baseEntities.BaseTest;
 import org.testng.Assert;
