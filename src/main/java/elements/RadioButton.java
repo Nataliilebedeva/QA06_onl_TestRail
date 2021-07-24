@@ -1,9 +1,7 @@
 package elements;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import net.bytebuddy.implementation.bytecode.Throw;
+import org.openqa.selenium.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,9 +39,13 @@ public class RadioButton {
         }
     }
 
-    public void selectByText(String optionName, String tagName) {
+    public void selectByText(String optionName) {
         for (UIElement element : options) {
-            String textValue = element.getParent().findElement(By.tagName(tagName)).getText();
+            String textValue;
+           try {
+           textValue = element.getParent().findElement(By.xpath(String.format("./*[text() = '%s']", optionName))).getText();}
+           catch (NoSuchElementException ex) {continue;}
+            System.out.println(textValue);
             if (textValue.equalsIgnoreCase(optionName)) {
                 element.click();
                 break;

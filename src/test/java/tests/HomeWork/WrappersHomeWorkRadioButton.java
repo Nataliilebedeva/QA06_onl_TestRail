@@ -18,7 +18,8 @@ public class WrappersHomeWorkRadioButton extends BaseTest {
 
         RadioButton radioButton = new RadioButton(driver, By.name("suite_mode"));
         radioButton.selectByIndex(3);
-        radioButton.selectByText("Use a single repository with baseline support", "strong");
+        Thread.sleep(2000);
+        radioButton.selectByText("Use a single repository with baseline support");
         Thread.sleep(2000);
     }
 
@@ -33,10 +34,13 @@ public class WrappersHomeWorkRadioButton extends BaseTest {
         button1.click();
 
         RadioButton radioButton = new RadioButton(driver, By.name("db_type"));
-        radioButton.selectByIndex(0);
+        radioButton.selectByIndex(1);
         Thread.sleep(2000);
-        radioButton.selectByText("MS SQL Export", "p");
+
+        radioButton.selectByText("MS SQL Export");
         Thread.sleep(2000);
     }
+
+
 
 }
