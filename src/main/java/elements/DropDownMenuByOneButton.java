@@ -19,8 +19,6 @@ public class DropDownMenuByOneButton {
      * @param by селектор кнопки, которая открывает список
      */
 
-    private final String NAME_OPTIONS = "//*[@id = 'replace']//a";
-
     public DropDownMenuByOneButton(WebDriver driver, By by) {
         this.driver = driver;
         this.buttonDD = new UIElement(driver, by);
@@ -30,7 +28,7 @@ public class DropDownMenuByOneButton {
         String nameParentOptions = buttonDD.getAttribute("href");
         String[] str = nameParentOptions.split("#");
         attributeNameForOptions = str[1];
-        By options = By.xpath(NAME_OPTIONS.replace("replace", attributeNameForOptions));
+        By options = By.xpath(String.format("//*[@id = '%s']//a", attributeNameForOptions));
         return options;
     }
 
