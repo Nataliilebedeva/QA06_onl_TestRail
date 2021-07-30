@@ -5,9 +5,7 @@
     <parameter name="psw-value" value="hYE/RiquvQVIzXfiBwm3"></parameter>
     <test name="Smoke">
         <classes>
-            <class name="tests.LoginTests"></class>
-            <class name="tests.AddEditDeleteProjectTests"></class>
-            <class name="tests.AddEditDeleteTestCaseTests"></class>
+            <class name="tests.TestRail.LoginTests"></class>
         </classes>
     </test>
 </suite>
