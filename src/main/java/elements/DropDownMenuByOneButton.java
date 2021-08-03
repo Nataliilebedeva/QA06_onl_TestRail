@@ -1,6 +1,7 @@
 package elements;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -53,12 +54,17 @@ public class DropDownMenuByOneButton {
     }
 
     public void selectByText(String optionName) {
+        boolean isFound = false;
         for (UIElement element : options) {
             String textValue = element.getText();
             if (textValue.equalsIgnoreCase(optionName)) {
                 element.click();
+                isFound = true;
                 break;
             }
+        }
+        if (!isFound) {
+            throw new NoSuchElementException("Опции с таким текстом нет");
         }
     }
 
@@ -68,6 +74,10 @@ public class DropDownMenuByOneButton {
      */
 
     public void selectByIndex(int index) {
-        options.get(index - 1).click();
+        if (index <= options.size()) {
+            options.get(index - 1).click();
+        } else {
+            throw new IndexOutOfBoundsException("Опции с таким индеком нет");
+        }
     }
 }

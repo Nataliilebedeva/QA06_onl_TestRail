@@ -31,15 +31,21 @@ public class RadioButton {
     }
 
     public void selectByIndex(int index) {
+        boolean isFound = false;
         for (UIElement element : options) {
             if (Integer.parseInt(element.getAttribute("value")) == index) {
                 element.click();
+                isFound = true;
                 break;
             }
+        }
+        if (!isFound) {
+            throw new NoSuchElementException("Опции с таким индексом нет");
         }
     }
 
     public void selectByText(String optionName) {
+        boolean isFound = false;
         for (UIElement element : options) {
             String textValue;
            try {
@@ -48,8 +54,12 @@ public class RadioButton {
             System.out.println(textValue);
             if (textValue.equalsIgnoreCase(optionName)) {
                 element.click();
+                isFound = true;
                 break;
             }
+        }
+        if (!isFound) {
+            throw new NoSuchElementException("Опции с таким текстом нет");
         }
     }
 }

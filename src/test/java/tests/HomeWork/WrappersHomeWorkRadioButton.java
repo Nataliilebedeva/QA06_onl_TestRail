@@ -14,7 +14,7 @@ public class WrappersHomeWorkRadioButton extends BaseTest {
         LoginStep loginStep = new LoginStep(driver);
         loginStep.loginWithCorrectAttribute();
 
-        driver.get("https://aqa06onl02.testrail.io/index.php?/admin/projects/add");
+        driver.get("https://aqa06onl03.testrail.io/index.php?/admin/projects/add");
 
         RadioButton radioButton = new RadioButton(driver, By.name("suite_mode"));
         radioButton.selectByIndex(3);

@@ -19,7 +19,7 @@ public class WrappersHomeWorkCheckBox extends BaseTest {
         LoginStep loginStep = new LoginStep(driver);
         loginStep.loginWithCorrectAttribute();
 
-        driver.get("https://aqa06onl02.testrail.io/index.php?/admin/projects/add");
+        driver.get("https://aqa06onl03.testrail.io/index.php?/admin/projects/add");
 
         CheckBox checkBox = new CheckBox(driver, By.id("show_announcement"));
         checkBox.changeState(true);
@@ -33,7 +33,7 @@ public class WrappersHomeWorkCheckBox extends BaseTest {
         LoginStep loginStep = new LoginStep(driver);
         loginStep.loginWithCorrectAttribute();
 
-        driver.get("https://aqa06onl02.testrail.io/index.php?/todos/overview/45");
+        driver.get("https://aqa06onl03.testrail.io/index.php?/todos/overview/3");
 
         List <CheckBox> checkBoxList = new ArrayList<>();
         for (WebElement element : waits.waitForVisibilityAllElements(By.name("statusSelection[]"))){
@@ -62,7 +62,7 @@ public class WrappersHomeWorkCheckBox extends BaseTest {
         LoginStep loginStep = new LoginStep(driver);
         loginStep.loginWithCorrectAttribute();
 
-        driver.get("https://aqa06onl02.testrail.io/index.php?/todos/overview/45");
+        driver.get("https://aqa06onl03.testrail.io/index.php?/todos/overview/3");
 
         List<CheckBox> checkBoxList = new ArrayList<>();
         for (WebElement element : waits.waitForVisibilityAllElements(By.name("statusSelection[]"))) {

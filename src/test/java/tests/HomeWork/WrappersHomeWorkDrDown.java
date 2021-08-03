@@ -37,12 +37,12 @@ public class WrappersHomeWorkDrDown extends BaseTest {
         LoginStep loginStep = new LoginStep(driver);
         loginStep.loginWithCorrectAttribute();
 
-        driver.get("https://aqa06onl02.testrail.io/index.php?/suites/view/43");
+        driver.get("https://aqa06onl03.testrail.io/index.php?/suites/view/3");
 
         DropDownMenuByOneButton dropDownMenu = new DropDownMenuByOneButton(driver, By.cssSelector(".button-report.dropdownLink"));
         dropDownMenu.openDrDown();
-        dropDownMenu.selectByText("Comparison for Cases");
-       // dropDownMenu.selectByIndex(1);
+       // dropDownMenu.selectByText("Activity Summary");
+        dropDownMenu.selectByIndex(9);
         Thread.sleep(3000);
     }
 
