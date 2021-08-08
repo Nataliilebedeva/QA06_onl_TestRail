@@ -16,7 +16,13 @@ public class LoginStep extends BaseStep {
         loginPage.setUsername(username);
         loginPage.setPassword(password);
         loginPage.clickLoginButton();
+    }
 
+    public void loginWithCorrectAttribute (){
+        LoginPage loginPage = new LoginPage(driver, true);
+        loginPage.setUsername(properties.getUserName());
+        loginPage.setPassword(properties.getPassword());
+        loginPage.clickLoginButton();
     }
 }
 

@@ -11,9 +11,16 @@ import java.util.List;
 
 public class Waits {
     private WebDriverWait wait;
+    private WebDriver driver;
 
     public Waits(WebDriver driver, int timeOut) {
         wait = new WebDriverWait(driver, timeOut);
+    }
+
+    public Waits(WebDriver driver) {
+        this.driver = driver;
+        ReadProperties readProperties = new ReadProperties();
+        wait = new WebDriverWait(driver, readProperties.getTimeOut());
     }
 
     //не только наличие в дом-модели, но и его отображение на экране: присутствует и отображается

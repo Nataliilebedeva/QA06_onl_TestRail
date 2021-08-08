@@ -1,4 +1,4 @@
-package tests;
+package tests.HomeWork;
 
 import baseEntities.BaseTest;
 import org.openqa.selenium.*;
